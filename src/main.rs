@@ -6,7 +6,7 @@ use std::path::Path;
 
 use rayon::prelude::*;
 use colour::*;
-use crc::{crc32};
+use crc::{Crc, CRC_32_ISO_HDLC};
 
 
 fn main() {
@@ -20,9 +20,10 @@ fn main() {
             .for_each(|caminho_arquivo| {
                 let nome_arquivo = Path::new(&caminho_arquivo).file_name().unwrap().to_str().unwrap();
                 let arquivo = read(&caminho_arquivo).expect("Não foi possível ler o arquivo.");
-                let crc = crc32::checksum_ieee(&arquivo);
+                let crc = Crc::<u32>::new(&CRC_32_ISO_HDLC);
+                let checksum = crc.checksum(&arquivo);
 
-                white_ln!("\nArquivo: {}\nCRC32:{:X}", nome_arquivo, crc);
+                white_ln!("\nArquivo: {}\nCRC32:{:X}", nome_arquivo, checksum);
             });
     pause();
 }
