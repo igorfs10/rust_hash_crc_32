@@ -6,9 +6,12 @@ edition = "2018"
 license = "MIT"
 
 [dependencies]
-rayon = "^1.4.0"
+rayon = "^1.4.1"
 colour = "^0.5.0"
 crc = "2.0.0-rc.1"
 
 [profile.release]
 lto = true
+
+[profile.release.build-override]
+opt-level = 3
