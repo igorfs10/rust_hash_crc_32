@@ -1,13 +1,13 @@
 [package]
 name = "rust_hash_crc_32"
-version = "0.0.2"
+version = "0.0.3"
 authors = ["igorfs10 <igorfs10@gmail.com>"]
 edition = "2018"
 license = "MIT"
 
 [dependencies]
-rayon = "^1.4.1"
-colour = "^0.5.0"
+rayon = "1.5.0"
+console = "0.14.0"
 crc = "2.0.0-rc.1"
 
 [profile.release]
